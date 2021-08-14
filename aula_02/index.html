@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="listaTelefonica">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 02 - Usando Diretivas (Parte 1)</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <script>
+        angular.module("listaTelefonica", [])
+        angular.module("listaTelefonica").controller("listaTelefonicaController", $scope => {
+            $scope.app = "Lista Telefônica"
+        })
+    </script>
+    
+</head>
+<body ng-controller="listaTelefonicaController">
+    <div>
+        <h4 ng-bind="app"></h4>
+    </div>
+</body>
+</html>
