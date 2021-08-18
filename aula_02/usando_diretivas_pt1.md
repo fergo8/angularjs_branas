@@ -84,3 +84,36 @@ Uma outra maneira de imprimir em tela algum recurso que esteja disponível na co
 ```
 
 Note que em ambas as formas não é necessário utilizar o _$scope_ explicitamente, pois o AngularJS já entende apenas esse `app`.
+
+## Diretiva _ng-repeat_
+
+Esta diretiva funciona como um comando `for` de linguagens de programação tipo JavaScript, C#, Python etc. Sendo assim, utilizamos `ng-repeat` para iterar em uma lista, percorrendo cada elemento que a compõe. Lembra daquele array de contatos onde listamos telefones de Pokémons? Para iterar nele imprimindo cada contato em uma tag HTML de tabela, fazemos o seguinte:
+
+```html
+<table class="table table-striped">
+    <tr>
+        <th>Nome</th>
+        <th>Telefone</th>
+    </tr>
+    <tr ng-repeat="contato in contatos">
+        <td>{{contato.nome}}</td>
+        <td>{{contato.telefone}}</td>
+    </tr>
+</table>
+```
+
+Dessa forma estamos percorrendo a lista __contatos__, sendo que cada item dessa lista estamos apelidando de __contato__. Com isso, criamos várias tags `<tr>` (uma para cada Pokémon da lista) imprimindo dentro dela um par de tags `<td>`, uma para o nome outro para o telefone.
+
+Obs: estou usando classes do Bootstrap v4 para tornar essa tabela um pouco mais bonita.
+
+## Diretiva _ng-model_
+
+A penúltima diretiva abordada nesse post, `ng-model`, tem como função o contrário da diretiva `ng-bind`. Ou seja, enquanto __bind__ imprime na View coisas que estão definidas na Controller, essa __model__ vai criar coisas na View (aqui estou falando de inputs) para transportá-las através do _$scope_ para a Controller.
+
+Pensando na lista telefônica, temos até o momento um título disponível em `$scope.app` e temos nossa tabela constituída dos itens do nosso array `$scope.contatos`. O próximo passo seria criarmos uma forma de adicionar novos Pokémons à lista e, para tanto, serão necessárias tags de input:
+
+```html
+<input class="form-control" type="text" ng-model="contato.nome" placeholder="Nome" />
+<input class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone" />
+```
+
