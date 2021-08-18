@@ -108,12 +108,40 @@ Obs: estou usando classes do Bootstrap v4 para tornar essa tabela um pouco mais 
 
 ## Diretiva _ng-model_
 
-A penúltima diretiva abordada nesse post, `ng-model`, tem como função o contrário da diretiva `ng-bind`. Ou seja, enquanto __bind__ imprime na View coisas que estão definidas na Controller, essa __model__ vai criar coisas na View (aqui estou falando de inputs) para transportá-las através do _$scope_ para a Controller.
+A penúltima diretiva abordada nesse texto, `ng-model`, tem como função o contrário da diretiva `ng-bind`. Ou seja, enquanto __bind__ imprime na View coisas que estão definidas na Controller, essa __model__ vai criar coisas na View (aqui estou falando de inputs) para transportá-las através do _$scope_ para a Controller.
 
-Pensando na lista telefônica, temos até o momento um título disponível em `$scope.app` e temos nossa tabela constituída dos itens do nosso array `$scope.contatos`. O próximo passo seria criarmos uma forma de adicionar novos Pokémons à lista e, para tanto, serão necessárias tags de input:
+Pensando na lista telefônica, temos até o momento um título disponível em `$scope.app` e temos nossa tabela constituída pelos itens do nosso array `$scope.contatos`. O próximo passo seria criarmos uma forma de adicionar novos Pokémons à lista e, para tanto, serão necessárias tags de input:
 
 ```html
 <input class="form-control" type="text" ng-model="contato.nome" placeholder="Nome" />
 <input class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone" />
 ```
 
+Nos inputs acima temos as diretivas apontando _contato.nome_ e _contato.telefone_, ambos os eventos ficam aguardando o usuário escrever algo nos campos. Tudo o que for escrito neles pode ser acessado pelo `$scope.contato` de forma online, ou seja, na medida em que você escreve nos inputs o AngularJS armazena caracter a caracter, isso acontece devido ao recurso __Two Way Data Binding__.
+
+## Diretiva _ng-click_
+
+Por fim, agora que temos os campos de input para escrevermos os dados de novos Pokémons só falta uma última coisa: um botão para Adicionar na lista. Para tanto, usaremos a diretiva `ng-click`, que funciona da mesma forma que os eventos _onclick_ do JavaScript. Então vamos adicionar uma tag `<buttom>` com esta diretiva:
+
+```html
+<button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)">Adicionar</button>
+```
+
+Neste botão estamos usando a diretiva para acionar aquela função que havíamos declarado lá no início em nossa Controller, aquela que chamamos _adicionarContato_. Note que estamos passando como parâmetro da função o nosso elemento _contato_ do _$scope_ (novamente não precisamos indicar algo como __$scope.contato__, pois o AngularJS já entende o _contato_ como item do _$scope_).
+
+Só para relembrar, a nossa função é esta:
+
+```javascript
+$scope.adicionarContato = contato => {
+    // Adiciona no array "contatos" uma cópia do novo item "contato" passado por parâmetro
+    $scope.contatos.push(angular.copy(contato))
+    // Apaga da memória os valores dentro de "contato"
+    delete $scope.contato
+}
+```
+
+__Dica:__ é importante que o novo item _contato_ esteja envolvido em um `angular.copy(contato)`, pois assim não temos problemas de referência deste objeto.
+
+[Clique aqui para ver o código da aula 02 completo](https://github.com/fergo8/angularjs_branas/blob/main/aula_02/index.html)
+
+[Ir para aula 03](https://github.com/fergo8/angularjs_branas/blob/main/aula_03/usando_diretivas_pt2.md)

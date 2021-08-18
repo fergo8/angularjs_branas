@@ -6,3 +6,4 @@ Esse é um repositório dedicado aos estudos de AngulasJS que estou me dedicando
 
 * [Aula 01 - Introdução e Hello World](https://github.com/fergo8/angularjs_branas/blob/main/aula_01/introducao_hello_world.md)
 * [Aula 02 - Usando Diretivas (Parte 1)](https://github.com/fergo8/angularjs_branas/blob/main/aula_02/usando_diretivas_pt1.md)
+* [Aula 03 - Usando Diretivas (Parte 2)](https://github.com/fergo8/angularjs_branas/blob/main/aula_03/usando_diretivas_pt2.md)
