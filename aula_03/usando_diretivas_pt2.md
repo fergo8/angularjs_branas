@@ -3,6 +3,7 @@
 Nessa segunda parte da aula sobre diretivas, serão abordados os itens da lista abaixo:
 
 * _ng-disabled_
+* _ng-options_
 
 ## Diretiva _ng-disabled_
 
@@ -20,3 +21,6 @@ __Obs:__ Em aulas futuras serão mostradas formas melhores de se fazer esse tipo
 
 ## Diretiva _ng-options_
 
+A próxima diretiva a ser vista é a `ng-options`, utilizada para criar as opções em uma tag `<select>`. Com ela, nosso intuito será pegar uma lista de objetos do back-end via JavaScript (pela Controller) e imprimi-la na tela, gerando assim um campo de opções selecionáveis.
+
+No caso do nosso exemplo da Lista Telefônica, podemos usar o `ng-options` para gerar uma lista de operadoras.
