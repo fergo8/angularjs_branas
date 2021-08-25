@@ -23,4 +23,26 @@ __Obs:__ Em aulas futuras serão mostradas formas melhores de se fazer esse tipo
 
 A próxima diretiva a ser vista é a `ng-options`, utilizada para criar as opções em uma tag `<select>`. Com ela, nosso intuito será pegar uma lista de objetos do back-end via JavaScript (pela Controller) e imprimi-la na tela, gerando assim um campo de opções selecionáveis.
 
-No caso do nosso exemplo da Lista Telefônica, podemos usar o `ng-options` para gerar uma lista de operadoras.
+No caso do nosso exemplo da Lista Telefônica, podemos usar o `ng-options` para gerar uma lista de operadoras. Sendo assim, o primeiro passo é estabelecermos na Controller um array de operadoras, da maneira abaixo:
+
+```javascript
+$scope.operadoras = [
+    { nome: "Vivo", codigo: 15 },
+    { nome: "Tim", codigo: 41 },
+    { nome: "Claro", codigo: 21 },
+]
+```
+
+Com isso, teremos disponível no nosso _$scope_ o array operadoras, que utilizaremos para compôr os itens da tag `<select>`. A seguir, criaremos a seguinte tag logo acima do botão de Adicionar:
+
+```html
+<select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome for operadora in operadoras">
+    <option value="">Selecione...</option>
+</select>
+```
+
+Aqui devemos notar dois pontos importantes:
+
+* __Ponto 1__ - veja que existe a necessidade de utilizarmos um `ng-model` para delimitar um objeto _contato.operadora_. Isso servirá para o AngularJS identificar e construir corretamente a estrutura do objeto _operadora_ a ser selecionado.
+
+* __Ponto 2__ - na diretiva `ng-options` a sintaxe usada é bastante semelhante à utilizada no `ng-repeat` (abordado na aula ainterior).
