@@ -23,6 +23,10 @@ __Obs:__ Em aulas futuras serão mostradas formas melhores de se fazer esse tipo
 
 A próxima diretiva a ser vista é a `ng-options`, utilizada para criar as opções em uma tag `<select>`. Com ela, nosso intuito será pegar uma lista de objetos do back-end via JavaScript (pela Controller) e imprimi-la na tela, gerando assim um campo de opções selecionáveis.
 
+Aqui nós vamos ver três maneiras de implementar essa diretiva, todas considerando o mesmo exemplo da aula anterior.
+
+### Método 1
+
 No caso do nosso exemplo da Lista Telefônica, podemos usar o `ng-options` para gerar uma lista de operadoras. Sendo assim, o primeiro passo é estabelecermos na Controller um array de operadoras, da maneira abaixo:
 
 ```javascript
@@ -45,4 +49,18 @@ Aqui devemos notar dois pontos importantes:
 
 * __Ponto 1__ - veja que existe a necessidade de utilizarmos um `ng-model` para delimitar um objeto _contato.operadora_. Isso servirá para o AngularJS identificar e construir corretamente a estrutura do objeto _operadora_ a ser selecionado.
 
-* __Ponto 2__ - na diretiva `ng-options` a sintaxe usada é bastante semelhante à utilizada no `ng-repeat` (abordado na aula ainterior).
+* __Ponto 2__ - na diretiva `ng-options` a sintaxe usada é bastante semelhante à utilizada no `ng-repeat` (abordado na aula anterior). Sendo assim, _operadora.nome_ indica qual campo dos objetos _operadora_ a expressão deve considerar para popular as opções do select.
+
+Outro ponto interessante é a tag `<option>` que criamos dentro do select. Ela serve como opção default para a lista de operadoras.
+
+### Método 2
+
+Uma outra maneira de implementar essa diretiva é utilizando um apelido para indicar o campo nome de operadora. Por exemplo, se quisermos mostrar o _código_, mas apresentarmos para o back-end como _nome_, basta usarmos da seguinte maneira:
+
+```html
+<select class="form-control" ng-model="contato.operadora" ng-options="operadora.codigo as operadora.nome for operadora in operadoras">
+    <option value="">Selecione...</option>
+</select>
+```
+
+Sendo assim, _operadora.codigo_ será o que será passado e _operadora.nome_ será o apelido. Em todo caso, este não é o método mais comum.

@@ -72,10 +72,23 @@
         <input class="form-control" type="text" ng-model="contato.nome" placeholder="Nome" />
         <input class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone" />
 
+        <!-- Método 1 -->
+        <!--
         <select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome for operadora in operadoras">
             <option value="">Selecione...</option>
         </select>
+        -->
 
+        <!-- Método 2 -->
+        <!--
+        <select class="form-control" ng-model="contato.operadora" ng-options="operadora.codigo as operadora.nome for operadora in operadoras">
+            <option value="">Selecione...</option>
+        </select>
+        -->
+
+        <!-- Método 3 -->
+
+        
         <button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="!contato.nome || !contato.telefone">Adicionar</button>
     </div>
 
