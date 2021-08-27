@@ -4,6 +4,8 @@ Nessa segunda parte da aula sobre diretivas, serão abordados os itens da lista 
 
 * _ng-disabled_
 * _ng-options_
+* _ng-class_
+* _ng-style_
 
 ## Diretiva _ng-disabled_
 
@@ -53,7 +55,7 @@ Aqui devemos notar dois pontos importantes:
 
 Outro ponto interessante é a tag `<option>` que criamos dentro do select. Ela serve como opção default para a lista de operadoras.
 
-### Método 2
+### Método 2 (apelido)
 
 Uma outra maneira de implementar essa diretiva é utilizando um apelido para indicar o campo nome de operadora. Por exemplo, se quisermos mostrar o _código_, mas apresentarmos para o back-end como _nome_, basta usarmos da seguinte maneira:
 
@@ -63,4 +65,28 @@ Uma outra maneira de implementar essa diretiva é utilizando um apelido para ind
 </select>
 ```
 
-Sendo assim, _operadora.codigo_ será o que será passado e _operadora.nome_ será o apelido. Em todo caso, este não é o método mais comum.
+Sendo assim, _operadora.codigo_ será o valor passado e _operadora.nome_ será o apelido. Em todo caso, este não é o método mais comum no uso dessa diretiva.
+
+### Método 3 (agrupando)
+
+Um outro método seria agrupar os itens da nossa lista de _operadoras_ através de um atributo em comum dos objetos. Para exemplificar esse método, vamos modificar a estrutura do array, adicionando o atributo _operadora.categoria_, assim:
+
+```javascript
+$scope.operadoras = [
+    { nome: "Vivo", codigo: 15, categoria: "Fixo" },
+    { nome: "Tim", codigo: 41, categoria: "Celular" },
+    { nome: "Claro", codigo: 21, categoria: "Celular" }
+]
+```
+
+A partir dessa nova estrutura, vamos acrescentar na diretiva `ng-options` um novo elemento: o _group by_. Observe:
+
+```html
+<select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome group by operadora.categoria for operadora in operadoras">
+    <option value="">Selecione...</option>
+</select>
+```
+
+Agora note que o campo dropdown será mostrado com uma separação entre as operadoras, organizando-as pelas categorias _Fixo_ e _Celular_ conforme o array.
+
+## Diretiva _ng-class_

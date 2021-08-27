@@ -38,9 +38,9 @@
             ]
 
             $scope.operadoras = [
-                { nome: "Vivo", codigo: 15 },
-                { nome: "Tim", codigo: 41 },
-                { nome: "Claro", codigo: 21 },
+                { nome: "Vivo", codigo: 15, categoria: "Fixo" },
+                { nome: "Tim", codigo: 41, categoria: "Celular" },
+                { nome: "Claro", codigo: 21, categoria: "Celular" }
             ]
 
             $scope.adicionarContato = contato => {
@@ -87,7 +87,9 @@
         -->
 
         <!-- Método 3 -->
-
+        <select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome group by operadora.categoria for operadora in operadoras">
+            <option value="">Selecione...</option>
+        </select>
         
         <button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="!contato.nome || !contato.telefone">Adicionar</button>
     </div>
