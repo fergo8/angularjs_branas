@@ -123,3 +123,9 @@ Em seguida, criaremos um input do tipo checkbox dentro da tabela (em uma nova co
     </tr>
 </table>
 ```
+
+Considerando a tabela acima, utilizamos a diretiva `ng-class` para indicar quando a classe CSS _selecionado_ deve ser aplicada, ou seja, no momento em que clicarmos o checkbox de uma linha o atributo _contato.selecionado_ passará para o valor _true_, acionando assim nossa classe CSS.
+
+Este mecanismo para selecionar e desselecionar os itens alterando seu CSS pode ser aplicado para escolhermos contatos que desejamos remover da lista. Contudo, essa implementação de um botão de _Excluir_ contatos vai repetir conceitos que já vimos no decorrer dessa aula, então vou detalhar isso em um texto a parte ([clique aqui para acessá-lo](https://github.com/fergo8/angularjs_branas/blob/main/aula_03/criando_botao_excluir.md)).
+
+## Diretiva _ng-style_
