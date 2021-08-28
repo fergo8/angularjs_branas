@@ -90,3 +90,36 @@ A partir dessa nova estrutura, vamos acrescentar na diretiva `ng-options` um nov
 Agora note que o campo dropdown será mostrado com uma separação entre as operadoras, organizando-as pelas categorias _Fixo_ e _Celular_ conforme o array.
 
 ## Diretiva _ng-class_
+
+A seguir, vamos passar para a diretiva `ng-class`, cuja principal função é adicionar classes às tags HTML dinamicamente. Ou seja, podemos usá-la para incluir ou excluir classes das tags conforme regras predefinidas, com o objetivo de modificar o comportamento ou aparência dos elementos HTML da página.
+
+Sendo assim, veremos esta diretiva na prática a partir do exemplo de Lista Telefônica. Agora a ideia é criar um checkbox ao lado de cada linha para podermos selecionar um ou mais contatos da nossa lista. Queremos __selecionar o contato de modo que a linha seja pintada__ de alguma cor, dando assim um destaque ao contato selecionado.
+
+Para tanto, o primeiro passo é criarmos na tag `<style>` uma classe CSS definindo uma cor:
+
+```css
+.selecionado {
+    background-color: pink !important;
+}
+```
+
+__Obs:__ Eu escolhi esse rosinha simpático por gostar muito dele, mas se você for _homem hétero-cis_ e sentir que sua masculinidade frágil está sendo afetada sinta-se à vontade para escolher outra.
+
+Em seguida, criaremos um input do tipo checkbox dentro da tabela (em uma nova coluna para manter a organização). Note que o input deve possuir uma diretiva `ng-model` indicando o novo atributo _contato.selecionado_. Este atributo será responsável por definir se o input foi clicado ou não, sendo nosso parâmetro para pintar ou não a linha. Veja como ficou a tabela:
+
+```html
+<table class="table table-striped">
+    <tr>
+        <th></th>
+        <th>Nome</th>
+        <th>Telefone</th>
+        <th>Operadora</th>
+    </tr>
+    <tr ng-class="{selecionado: contato.selecionado}" ng-repeat="contato in contatos">
+        <td><input type="checkbox" ng-model="contato.selecionado" /></td>
+        <td>{{contato.nome}}</td>
+        <td>{{contato.telefone}}</td>
+        <td>{{contato.operadora.nome}}</td>
+    </tr>
+</table>
+```

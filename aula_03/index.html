@@ -12,7 +12,7 @@
 
     <style>
         .jumbotron {
-            width: 400px;
+            width: 500px;
             margin-top: 30px;
             margin-left: auto;
             margin-right: auto;
@@ -21,20 +21,26 @@
         .jumbotron h4 {
             margin-bottom: 30px;
         }
-        .jumbotron input {
+        .jumbotron input, .jumbotron select, .jumbotron button {
             margin-bottom: 5px;
+        }
+        .jumbotron button {
+            min-width: 160px;
+        }
+        .selecionado {
+            background-color: pink !important;
         }
     </style>
 
     <script>
         angular.module("listaTelefonica", [])
         angular.module("listaTelefonica").controller("listaTelefonicaController", $scope => {
-            $scope.app = "Lista Telefônica"
+            $scope.app = "Pokelista Telefônica"
 
             $scope.contatos = [
-                { nome: "Bulbasauro", telefone: "11111111" },
-                { nome: "Charmander", telefone: "22222222" },
-                { nome: "Squirtle", telefone: "33333333" }
+                { nome: "Bulbasauro", telefone: "11111111", operadora: { nome: "Vivo", codigo: 15, categoria: "Fixo" } },
+                { nome: "Charmander", telefone: "22222222", operadora: { nome: "Tim", codigo: 41, categoria: "Celular" } },
+                { nome: "Squirtle", telefone: "33333333", operadora: { nome: "Claro", codigo: 21, categoria: "Celular" } }
             ]
 
             $scope.operadoras = [
@@ -47,6 +53,10 @@
                 $scope.contatos.push(angular.copy(contato))
                 delete $scope.contato
             }
+
+            $scope.removerContatos = contatos => {
+                $scope.contatos = contatos.filter(contato => { if (!contato.selecionado) return contato })
+            }
         })
     </script>
     
@@ -55,20 +65,7 @@
     <div class="jumbotron">
         <!--<h4 ng-bind="app"></h4>-->
         <h4>{{app}}</h4>
-
-        <table class="table table-striped">
-            <tr>
-                <th>Nome</th>
-                <th>Telefone</th>
-                <th>Operadora</th>
-            </tr>
-            <tr ng-repeat="contato in contatos">
-                <td>{{contato.nome}}</td>
-                <td>{{contato.telefone}}</td>
-                <td>{{contato.operadora.nome}}</td>
-            </tr>
-        </table>
-
+        
         <input class="form-control" type="text" ng-model="contato.nome" placeholder="Nome" />
         <input class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone" />
 
@@ -88,10 +85,29 @@
 
         <!-- Método 3 -->
         <select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome group by operadora.categoria for operadora in operadoras">
-            <option value="">Selecione...</option>
+            <option value="">Selecione uma operadora...</option>
         </select>
         
-        <button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="!contato.nome || !contato.telefone">Adicionar</button>
+        <div class="clearfix">
+            <button class="btn btn-primary float-left" ng-click="adicionarContato(contato)" ng-disabled="!contato.nome || !contato.telefone">Adicionar</button>
+            <button class="btn btn-danger float-right" ng-click="removerContatos(contatos)">Excluir</button>
+        </div>
+        <hr />
+
+        <table class="table table-striped">
+            <tr>
+                <th></th>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>Operadora</th>
+            </tr>
+            <tr ng-class="{selecionado: contato.selecionado}" ng-repeat="contato in contatos">
+                <td><input type="checkbox" ng-model="contato.selecionado" /></td>
+                <td>{{contato.nome}}</td>
+                <td>{{contato.telefone}}</td>
+                <td>{{contato.operadora.nome}}</td>
+            </tr>
+        </table>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
