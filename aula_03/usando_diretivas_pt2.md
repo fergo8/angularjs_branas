@@ -129,3 +129,21 @@ Considerando a tabela acima, utilizamos a diretiva `ng-class` para indicar quand
 Este mecanismo para selecionar e desselecionar os itens alterando seu CSS pode ser aplicado para escolhermos contatos que desejamos remover da lista. Contudo, essa implementação de um botão de _Excluir_ contatos vai repetir conceitos que já vimos no decorrer dessa aula, então vou detalhar isso em um texto a parte ([clique aqui para acessá-lo](https://github.com/fergo8/angularjs_branas/blob/main/aula_03/criando_botao_excluir.md)).
 
 ## Diretiva _ng-style_
+
+A diretiva `ng-style` permite que utilizemos valores definidos na Controller como estilo CSS. Sendo assim, podemos criar um marcador colorido para indicar cada Pokémon da Lista Telefônica. Primeiro precisamos incluir um novo atributo _cor_ no nosso array _contatos_. Ele vai ficar dessa forma:
+
+```javascript
+$scope.contatos = [
+    { nome: "Bulbasauro", telefone: "11111111", cor: "green", operadora: { nome: "Vivo", codigo: 15, categoria: "Fixo" } },
+    { nome: "Charmander", telefone: "22222222", cor: "red", operadora: { nome: "Tim", codigo: 41, categoria: "Celular" } },
+    { nome: "Squirtle", telefone: "33333333", cor: "blue", operadora: { nome: "Claro", codigo: 21, categoria: "Celular" } }
+]
+```
+
+Em seguida, criamos outra coluna na tabela, onde criaremos uma `<div>` quadrada (width e height to mesmo tamanho). A diretiva `ng-style` será usada para definir dinamicamente o _background-color_ dessa div. Assim:
+
+```html
+<td><div style="width: 20px; height: 20px;" ng-style="{'background-color': contato.cor}"></div></td>
+```
+
+Assim definimos marcadores dinâmicos de cor para identificarmos os Pokémons da lista.

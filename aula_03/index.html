@@ -38,9 +38,9 @@
             $scope.app = "Pokelista Telefônica"
 
             $scope.contatos = [
-                { nome: "Bulbasauro", telefone: "11111111", operadora: { nome: "Vivo", codigo: 15, categoria: "Fixo" } },
-                { nome: "Charmander", telefone: "22222222", operadora: { nome: "Tim", codigo: 41, categoria: "Celular" } },
-                { nome: "Squirtle", telefone: "33333333", operadora: { nome: "Claro", codigo: 21, categoria: "Celular" } }
+                { nome: "Bulbasauro", telefone: "11111111", cor: "green", operadora: { nome: "Vivo", codigo: 15, categoria: "Fixo" } },
+                { nome: "Charmander", telefone: "22222222", cor: "red", operadora: { nome: "Tim", codigo: 41, categoria: "Celular" } },
+                { nome: "Squirtle", telefone: "33333333", cor: "blue", operadora: { nome: "Claro", codigo: 21, categoria: "Celular" } }
             ]
 
             $scope.operadoras = [
@@ -104,12 +104,14 @@
                 <th>Nome</th>
                 <th>Telefone</th>
                 <th>Operadora</th>
+                <th></th>
             </tr>
-            <tr ng-class="{selecionado: contato.selecionado}" ng-repeat="contato in contatos">
+            <tr ng-class="{'selecionado': contato.selecionado}" ng-repeat="contato in contatos">
                 <td><input type="checkbox" ng-model="contato.selecionado" /></td>
                 <td>{{contato.nome}}</td>
                 <td>{{contato.telefone}}</td>
                 <td>{{contato.operadora.nome}}</td>
+                <td><div style="width: 20px; height: 20px;" ng-style="{'background-color': contato.cor}"></div></td>
             </tr>
         </table>
     </div>
