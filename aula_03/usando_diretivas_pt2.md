@@ -6,6 +6,10 @@ Nessa segunda parte da aula sobre diretivas, serão abordados os itens da lista 
 * _ng-options_
 * _ng-class_
 * _ng-style_
+* _ng-hide_
+* _ng-show_
+* _ng-if_
+* _ng-include_
 
 ## Diretiva _ng-disabled_
 
@@ -147,3 +151,36 @@ Em seguida, criamos outra coluna na tabela, onde criaremos uma `<div>` quadrada 
 ```
 
 Assim definimos marcadores dinâmicos de cor para identificarmos os Pokémons da lista.
+
+## Diretivas _ng-show_ e _ng-hide_
+
+As diretivas `ng-show` e `ng-hide` têm o propósito inverso uma da outra. Ou seja, enquanto _show_ vai mostrar algo a partir de uma condição, _hide_ vai esconder esse algo, também mediante uma condição.
+
+Por exemplo, vamos supor que o botão Excluir devesse aparecer apenas quando algum Pokémon fosse selecionado. Neste caso podemos usar o `ng-hide` no lugar daquele `ng-disabled`, dessa forma:
+
+```html
+<button class="btn btn-danger float-right" ng-click="removerContatos(contatos)" ng-hide="!isContatoSelecionado(contatos)">Excluir</button>
+```
+
+Sendo assim, nossa função _isContatoSelecionado_ seria a condição para que o botão Excluir aparecesse ou desaparecesse da tela. O mesmo poderíamos fazer com a tabela inteira. Vamos supor que ela só devesse aparecer caso houvesse pelo menos um Pokémon cadastrado na Lista Telefônica. Nesse caso, nós podemos usar a diretiva `ng-show` para esconder a tabela inteira da seguinte forma:
+
+```html
+<table class="table table-striped" ng-show="contatos.length > 0">
+    <tr>
+        <th></th>
+        <th>Nome</th>
+        <th>Telefone</th>
+        <th>Operadora</th>
+        <th></th>
+    </tr>
+    <tr ng-class="{'selecionado': contato.selecionado}" ng-repeat="contato in contatos">
+        <td><input type="checkbox" ng-model="contato.selecionado" /></td>
+        <td>{{contato.nome}}</td>
+        <td>{{contato.telefone}}</td>
+        <td>{{contato.operadora.nome}}</td>
+        <td><div style="width: 20px; height: 20px;" ng-style="{'background-color': contato.cor}"></div></td>
+    </tr>
+</table>
+```
+
+Deste modo, a tabela apenas será mostrada se a condição _contatos.length > 0_ for verdadeira.
