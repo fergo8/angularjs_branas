@@ -184,3 +184,34 @@ Sendo assim, nossa função _isContatoSelecionado_ seria a condição para que o
 ```
 
 Deste modo, a tabela apenas será mostrada se a condição _contatos.length > 0_ for verdadeira.
+
+## Diretiva _ng-if_
+
+A próxima diretiva é a `ng-if`, responsável por renderizar alguma tag HTML apenas mediante uma condição. Isso ajuda em questões de performance, uma vez que o elemento não será carregado até que a condição determinada seja atendida.
+
+Por exemplo, podemos usar o `ng-if` no lugar do `ng-show` da tabela. Deste modo, o resultado visual será exatamente o mesmo, porém se observarmos o comportamento do HTML da página notaremos uma diferença:
+
+* __Usando o _ng-show_:__ a tag `<table>` sempre estará lá, independente da condição _contatos.length > 0_ ser atendida ou não. A diretiva _ng-show_ esconde ou mostra a tabela alterando o _CSS display_.
+
+* __Usando o _ng-if_:__ já com o _if_ nós não apenas escondemos a tag `<table>`, mas literalmente a apagamos. Dessa forma, quando inserimos o primeiro contato, não apenas passamos a mostrar a tabela, mas recriamos a tag HTML.
+
+## Diretiva _ng-include_
+
+Por fim, a diretiva `ng-include` é usada para vincular arquivos HTML que estiverem separados. Por exemplo, vamos supor que seja necessário adicionar uma mensagem de rodapé na nossa Lista Telefônica. Contudo, vamos imaginar que a mensagem esteja em uma arquivo HTML a parte chamado _footer.html_, cujo conteúdo seja algo assim:
+
+```html
+<footer style="text-align: center">Criado por Jeff</footer>
+```
+
+Nesse caso, no nosso _index.html_ podemos utilizar uma tag `<div>` com o `ng-include` apontando para este arquivo a parte, assim:
+
+```html
+<div ng-include="'footer.html'"></div>
+```
+
+Dessa forma temos um rodapé separado, podendo ser usado em outras páginas que ainda poderemos criar.
+
+
+[Clique aqui para ver o código da aula 03 completo](https://github.com/fergo8/angularjs_branas/blob/main/aula_03/index.html)
+
+[Ir para aula 04](https://github.com/fergo8/angularjs_branas/blob/main/aula_04/validando-formularios.md)
