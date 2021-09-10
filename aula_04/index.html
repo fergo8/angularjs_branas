@@ -67,33 +67,19 @@
 </head>
 <body ng-controller="listaTelefonicaController">
     <div class="jumbotron">
-        <!--<h4 ng-bind="app"></h4>-->
         <h4>{{app}}</h4>
         
-        <input class="form-control" type="text" ng-model="contato.nome" placeholder="Nome" />
-        <input class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone" />
+        <form name="contatoForm">
+            <input class="form-control" type="text" ng-model="contato.nome" placeholder="Nome" ng-required="true" />
+            <input class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone" ng-required="true" />
 
-        <!-- Método 1 -->
-        <!--
-        <select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome for operadora in operadoras">
-            <option value="">Selecione...</option>
-        </select>
-        -->
+            <select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome group by operadora.categoria for operadora in operadoras">
+                <option value="">Selecione uma operadora...</option>
+            </select>
+        </form>
 
-        <!-- Método 2 -->
-        <!--
-        <select class="form-control" ng-model="contato.operadora" ng-options="operadora.codigo as operadora.nome for operadora in operadoras">
-            <option value="">Selecione...</option>
-        </select>
-        -->
-
-        <!-- Método 3 -->
-        <select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome group by operadora.categoria for operadora in operadoras">
-            <option value="">Selecione uma operadora...</option>
-        </select>
-        
         <div class="clearfix">
-            <button class="btn btn-primary float-left" ng-click="adicionarContato(contato)" ng-disabled="!contato.nome || !contato.telefone">Adicionar</button>
+            <button class="btn btn-primary float-left" ng-click="adicionarContato(contato)" ng-disabled="contatoForm.$invalid">Adicionar</button>
             <button class="btn btn-danger float-right" ng-click="removerContatos(contatos)" ng-hide="!isContatoSelecionado(contatos)">Excluir</button>
         </div>
         <hr />
