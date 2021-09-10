@@ -1,6 +1,6 @@
 # Aula 04 - Validando Formulários
 
-Na aula a seguir, focaremos em diretivas e abordagens voltadas para validação de formulários. Sendo assim, veremos as diretivas abaixo:
+Na aula a seguir, focaremos em diretivas e propriedades voltadas para validação de formulários. Sendo assim, veremos as diretivas abaixo:
 
 * _ng-required_
 * _$valid_
@@ -24,4 +24,10 @@ Portanto, para implementarmos essa diretiva na nossa Lista Telefônica das aulas
 ```
 
 Agora, note os seguintes pontos:
+
+1- Nossa tag `<form>` precisa ter o atributo _name_, pois o AngularJS entende esse atributo como um novo objeto criado no _$scope_, podendo ser manipulado na Controller.
+
+2- Em cada tag `<input>` adicionamos uma diretiva `ng-required` com o valor _true_ indicando a necessidade do campo estar preenchido.
+
+## Propriedades _$valid_ e _$invalid_
 
