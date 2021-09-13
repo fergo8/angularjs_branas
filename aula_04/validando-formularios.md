@@ -31,3 +31,14 @@ Agora, note os seguintes pontos:
 
 ## Propriedades _$valid_ e _$invalid_
 
+Uma vez que temos o formulário denominado _contatoForm_, podemos utilizar esse novo objeto para efetuarmos a validação dos campos. Se você voltar na aula anterior, lembrará que criamos um botão _Adicionar_ que serve para incluirmos novos Pokémons à Lista Telefônica.
+
+Sendo assim, naquela aula criamos uma validação com a diretiva `ng-disabled` afim de bloquear o botão caso não houvesse dados digitados nos _inputs_ do formulário. O problema é que a validação criada naquele momento não é muito declarativa, uma vez que criamos toda uma expressão com operadores lógicos. No entanto, existe uma maneira bem mais declarativa para indicar as condições do bloqueio desse botão _Adicionar_.
+
+É aí que entram as propriedades _$valid_ e _$invalid_. Ambas possuem valores booleanos, sendo assim podem ser usadas no lugar daquela expressão _!contato.nome || !contato.telefone_. Observe abaixo como o `ng-disabled` ficou:
+
+```html
+<button class="btn btn-primary float-left" ng-click="adicionarContato(contato)" ng-disabled="contatoForm.$invalid">Adicionar</button>
+```
+
+__Obs:__ também poderíamos usar a expressão `ng-disabled="!contatoForm.$valid"`, que daria no mesmo.
