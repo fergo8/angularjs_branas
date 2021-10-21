@@ -23,6 +23,7 @@ Portanto, para implementarmos essa diretiva na nossa Lista Telefônica das aulas
 </form>
 ```
 
+
 Agora, note os seguintes pontos:
 
 1- Nossa tag `<form>` precisa ter o atributo _name_, pois o AngularJS entende esse atributo como um novo objeto criado no _$scope_, podendo ser manipulado na Controller.
